@@ -1,26 +1,14 @@
 [
   {
+    "id": 0,
+    "task": "wegsdf"
+  },
+  {
     "id": 1,
-    "task": "Study HTML"
+    "task": "dsfdfdsf"
   },
   {
     "id": 2,
-    "task": "Study js"
-  },
-  {
-    "id": 3,
-    "task": "Finish the project"
-  },
-  {
-    "id": 4,
-    "task": "Read a book"
-  },
-  {
-    "id": 5,
-    "task": "Exercise for 30 minutes"
-  },
-  {
-    "id": 6,
-    "task": "Call a friend"
+    "task": "sdfsgd"
   }
 ]

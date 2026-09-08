@@ -76,6 +76,11 @@ app.get("/delete-task/:taskId", (req, res) => {
         res.redirect("/")
     })})
 
+app.post("/delete-all-tasks", (req, res) => {
+    writeFile("./tasks.json", JSON.stringify([]))
+    res.redirect("/")
+})
+
             
         
  
