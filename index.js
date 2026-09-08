@@ -33,33 +33,57 @@ const writeFile = (filePath, data) => {
 app.get("/", (req, res) => {
     readFile("./tasks.json").then((tasks) => {
         console.log(tasks)
-        res.render("index", { tasks: tasks })
+        res.render("index", { tasks: tasks, error: null } )
     })
 })
 
 app.use(express.urlencoded({ extended: true }));
 
 app.post("/", (req, res) => {
+
+    const task = req.body.task.trim()
+
+    if (task === "") {
+        readFile("./tasks.json").then((tasks) => {
+            res.render("index", {
+                tasks: tasks,
+                error: "Task cannot be empty"
+            })
+        })
+
+        return
+    }
+
     readFile("./tasks.json").then((tasks) => {
+
         let index
-        if(tasks.length === 0){
+
+        if (tasks.length === 0) {
             index = 0
-        }
-        else{
+        } else {
             index = tasks[tasks.length - 1].id + 1
         }
+
         const newtask = {
             id: index,
-            task: req.body.task
+            task: task
         }
+
         tasks.push(newtask)
-        console.log(newtask)
-        data = JSON.stringify(tasks, null, 2)
+
+        const data = JSON.stringify(tasks, null, 2)
+
         writeFile("./tasks.json", data)
+
         res.redirect("/")
-        
+    })
 })
-})
+
+
+
+
+
+
 
 app.get("/delete-task/:taskId", (req, res) => {
     let deletedTaskId = req.params.taskId
