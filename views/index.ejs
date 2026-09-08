@@ -14,10 +14,10 @@
                         <div class="card-content">
                             <span class="card-title">Todo list</span>
                             <div class="row">
-                                <form class="col s12">
+                                <form class="col s12" method="post" action="/">
                                     <div class="row">
                                         <div class ="input-field col s12">
-                                            <input id="task" type="text" placeholder="Task">
+                                            <input id="task" type="text" placeholder="Task" name="task">
                                             <label for="task">Add a new task</label>
                                         </div>
                                     </div>
@@ -27,10 +27,10 @@
                     </div>
                     <div class="card-action">
                         <ul class="collection">
-                            <li class="collection-item">Task 1</li>
-                            <li class="collection-item">Task 2</li>
-                            <li class="collection-item">Task 3</li>
-                            <li class="collection-item">Task 4</li>
+                        <% console.log(tasks) %>
+                        <% tasks.forEach((task) => { %>
+                            <li class="collection-item"><%= task %></li>
+                        <% }); %>
                         </ul>
                 </div>
         </div>
