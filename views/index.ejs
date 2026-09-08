@@ -1,1 +1,39 @@
-<b>template test</b>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>todo list</title>
+        <meta charset="UTF-8">
+        <meta name="viweport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Todo list</span>
+                            <div class="row">
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class ="input-field col s12">
+                                            <input id="task" type="text" placeholder="Task">
+                                            <label for="task">Add a new task</label>
+                                        </div>
+                                    </div>
+                                    <input type="submit" value="Add Task" class="btn">
+                                </form>
+                            </div>
+                    </div>
+                    <div class="card-action">
+                        <ul class="collection">
+                            <li class="collection-item">Task 1</li>
+                            <li class="collection-item">Task 2</li>
+                            <li class="collection-item">Task 3</li>
+                            <li class="collection-item">Task 4</li>
+                        </ul>
+                </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+</html>
