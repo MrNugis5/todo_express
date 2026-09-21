@@ -83,6 +83,31 @@ app.post("/", (req, res) => {
 
 
 
+app.get("/edit-task/:taskId", (req, res) =>{
+    let renamedTaskId = req.params.taskId
+    console.log("Task ID:", renamedTaskId)
+
+readFile("./tasks.json").then((tasks) => {
+
+    let taskToEdit
+
+    tasks.forEach((task) => {
+        if(task.id == renamedTaskId){
+            taskToEdit = task
+        }
+    })
+
+    console.log("Task to edit:", taskToEdit)
+
+    if (!taskToEdit) {
+        return res.status(404).send("Task not found")
+    }
+
+    res.render("edit-task", {
+        task: taskToEdit,
+        error: null
+    })
+})
 
 
 app.get("/delete-task/:taskId", (req, res) => {
@@ -98,17 +123,55 @@ app.get("/delete-task/:taskId", (req, res) => {
         const data = JSON.stringify(tasks, null, 2)
         writeFile("./tasks.json", data)
         res.redirect("/")
-    })})
+    })})  
+ 
 
 app.post("/delete-all-tasks", (req, res) => {
     writeFile("./tasks.json", JSON.stringify([]))
     res.redirect("/")
 })
 
-            
-        
+app.post("/edit-task", (req, res) => {
+    let taskId = req.body.taskId
+let userInput = req.body.task.trim()
+
+console.log("Update data:", req.body)
+
+readFile("./tasks.json").then((tasks) => {
+
+    let taskToEdit
+
+    tasks.forEach((task) => {
+        if(task.id == taskId){
+            taskToEdit = task
+        }
+    })
+
+    if (!taskToEdit) {
+        return res.status(404).send("Task not found")
+    }
+
+    if (userInput === "") {
+        return res.render("edit-task", {
+            task: taskToEdit,
+            error: "Task cannot be empty"
+        })
+    }
+
+    taskToEdit.task = userInput
+
+    const data = JSON.stringify(tasks, null, 2)
+
+    writeFile("./tasks.json", data)
+
+    res.redirect("/")
+})
+
+})})
+
+  
  
 
 app.listen(3001, () =>{
     console.log("Example app is started at http://localhost:3001")
-} )
+} ) 

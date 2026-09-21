@@ -38,6 +38,9 @@
                         <% tasks.forEach((task) => { %>
                             <li class="collection-item"><%= task.task %>
                                 <a href="delete-task/<%= task.id %>" class="secondary-content"><i class="material-icons">delete</i></a>
+                                <a href="/edit-task/<%= task.id %>" class="secondary-content">
+                <i class="material-icons">edit</i>
+            </a>
                             </li>
                         <% }) %>
                         </ul>
